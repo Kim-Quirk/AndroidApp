@@ -16,14 +16,12 @@ Language: Kotlin
 
 # Useful Websites
 
-{Make a list of websites that you found helpful in this project}
 * [Android.com](https://developer.android.com/training/basics/firstapp)
 * [CodeWithMazn on YouTube](https://www.youtube.com/channel/UCkNr5O7Jbc2cbmkzyP2dEzA)
 * [Muhammad Ali on YouTube](https://www.youtube.com/channel/UCYcF7wY9EtPXiQ5P19HLNKg)
 
 # Future Work
 
-{Make a list of things that you need to fix, improve, and add in the future.}
 * Add a pop-up menu that asks if the user would like to return to the menu or play again
 * Fix the bug that properly displays ties without crashing the app
 * Add more difficult AI for single player mode
