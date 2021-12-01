@@ -4,9 +4,7 @@ This is a Tic-Tac-Toe game. This app allows a user to start a single-player or t
 
 I made this app to further my knowledge of the Kotlin language and to familiarize myself with Android Studio. This was my first time developing an app for any mobile device. I wanted to give it a shot and learn the basics.
 
-{Provide a link to your YouTube demonstration.  It should be a 4-5 minute demo of the app running and a walkthrough of the code.}
-
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/x2gGHRTGIDg)
 
 # Development Environment
 
@@ -25,3 +23,4 @@ Language: Kotlin
 * Add a pop-up menu that asks if the user would like to return to the menu or play again
 * Fix the bug that properly displays ties without crashing the app
 * Add more difficult AI for single player mode
+* Change color of buttons (for fun)
