@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 
+//A screen for the single player version
 class PlayGame : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -13,6 +14,7 @@ class PlayGame : AppCompatActivity() {
 
         val btnmenu = findViewById<Button>(R.id.btnmenu)
 
+//        Return to menu button
         btnmenu.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -20,6 +22,7 @@ class PlayGame : AppCompatActivity() {
 
         var answers = arrayOf(" ", " ", " ", " ", " ", " ", " ", " ", " ")
 
+//        Get access to all of the buttons
         val button1 = findViewById<Button>(R.id.button_1)
         val button2 = findViewById<Button>(R.id.button_2)
         val button3 = findViewById<Button>(R.id.button_3)
@@ -32,15 +35,17 @@ class PlayGame : AppCompatActivity() {
         val buttons = arrayOf(button1, button2, button3, button4, button5, button6, button7, button8, button9)
         var win = false
 
+//        Set listeners for all 9 buttons...
         button1.setOnClickListener {
             if (button1.isClickable) {
-                button1.text = "X"
-                button1.isClickable = false
-                answers[0] = "X"
-                win = testWin(answers, buttons)
-                answers = enemyMoves(answers, buttons)
+                button1.text = "X" // Change button text
+                button1.isClickable = false //Button can't be clicked
+                answers[0] = "X" //Store to array for checking answers
+                win = testWin(answers, buttons) //Did we win??
+                answers = enemyMoves(answers, buttons) //Enemy turn!
             }
         }
+//        And repeat for each button
         button2.setOnClickListener {
             if (button2.isClickable) {
                 button2.text = "X"
@@ -118,7 +123,10 @@ class PlayGame : AppCompatActivity() {
     //Tests all possible win conditions to see if someone has won tic-tac-toe.
     private fun testWin(answers: Array<String>, buttons: Array<Button>): Boolean {
         var win = false
+//        Once someone has won, replace the empty text with a win statement
         val winStatement = findViewById<TextView>(R.id.textWin)
+
+//        All possible win statements...
         if (
             (answers[0] == "X" && answers[1] == "X" && answers[2] == "X") ||
             (answers[3] == "X" && answers[4] == "X" && answers[5] == "X") ||
@@ -129,6 +137,7 @@ class PlayGame : AppCompatActivity() {
             (answers[0] == "X" && answers[4] == "X" && answers[8] == "X") ||
             (answers[2] == "X" && answers[4] == "X" && answers[6] == "X")
         ) {
+//            Player win scenario
             win = true
             winStatement.text = "You win! Congrats!"
         }
@@ -142,9 +151,11 @@ class PlayGame : AppCompatActivity() {
             (answers[0] == "O" && answers[4] == "O" && answers[8] == "O") ||
             (answers[2] == "O" && answers[4] == "O" && answers[6] == "O")
         ) {
+//            Computer win scenario
             win = true
             winStatement.text = "The computer wins! Better luck next time."
         }
+//        Checks for a tie
         if (!win) {
             var count = 0
             for (i in 0..8) {
@@ -154,11 +165,13 @@ class PlayGame : AppCompatActivity() {
             }
             if (count == 9) {
                 win = true
+//                Tie scenario
                 winStatement.text = "It's a tie. No one wins!"
             }
         }
         if (win) {
             for (x in 0..8) {
+//                If we won, buttons can't be clicked
                 buttons[x].isClickable = false
             }
         }

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 
+//A screen for the two player version
 class TwoPlayer : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -14,13 +15,16 @@ class TwoPlayer : AppCompatActivity() {
 
         val btnmenu = findViewById<Button>(R.id.btnmenu)
 
+//        Return to menu button
         btnmenu.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
+//        Set answers to be empty for now
         var answers = arrayOf(" ", " ", " ", " ", " ", " ", " ", " ", " ")
 
+//        All buttons...
         val button1 = findViewById<Button>(R.id.button_1)
         val button2 = findViewById<Button>(R.id.button_2)
         val button3 = findViewById<Button>(R.id.button_3)
@@ -32,23 +36,24 @@ class TwoPlayer : AppCompatActivity() {
         val button9 = findViewById<Button>(R.id.button_9)
         val buttons = arrayOf(button1, button2, button3, button4, button5, button6, button7, button8, button9)
         var win = false
-        var player = 1
+        var player = 1 //Keep track of player turn
 
-        button1.setOnClickListener {
+        button1.setOnClickListener { //Check if button is clicked
             if (button1.isClickable) {
-                if (player == 1) {
-                    button1.text = "X"
-                    player = 2
+                if (player == 1) { //If player one...
+                    button1.text = "X" //Place an X
+                    player = 2 //Change it to payer two's turn next
                     answers[0] = "X"
-                } else {
-                    button1.text = "O"
-                    player = 1
+                } else { //otherwise its player two..
+                    button1.text = "O" //Place an O
+                    player = 1 //Change it to payer one's turn next
                     answers[0] = "O"
                 }
-                button1.isClickable = false
-                win = testWin(answers, buttons)
+                button1.isClickable = false //button can't be clicked again
+                win = testWin(answers, buttons) //test for win
             }
         }
+        //repeat
         button2.setOnClickListener {
             if (button2.isClickable) {
                 if (player == 1) {
@@ -191,6 +196,7 @@ class TwoPlayer : AppCompatActivity() {
             (answers[2] == "X" && answers[4] == "X" && answers[6] == "X")
         ) {
             win = true
+//            Player one win scenario
             winStatement.text = "Player One wins! Go X's"
         }
         if (
@@ -204,6 +210,7 @@ class TwoPlayer : AppCompatActivity() {
             (answers[2] == "O" && answers[4] == "O" && answers[6] == "O")
         ) {
             win = true
+//            Player two win scenario
             winStatement.text = "Player Two wins! Go O's."
         }
         if (!win) {
@@ -215,11 +222,13 @@ class TwoPlayer : AppCompatActivity() {
             }
             if (count == 9) {
                 win = true
+//                Tie scenario
                 winStatement.text = "It's a tie. No one wins!"
             }
         }
         if (win) {
             for (x in 0..8) {
+//                If game is over, buttons can't be clicked
                 buttons[x].isClickable = false
             }
         }
